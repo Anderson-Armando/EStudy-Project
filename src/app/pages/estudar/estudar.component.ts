@@ -10,7 +10,15 @@ export class EstudarComponent {
 
   constructor(private disciplinaService: DisciplinaService){
     disciplinaService.buscarDisciplina().subscribe(
-      res => (this.disciplinas));
+      res => {
+        this.disciplinas = res?.map (i=>{
+          return{
+            value: i.id,
+            label: i.nome
+          }
+        })
+      }
+    );
   }
 
   monitores = [{ id: 1, "foto": "https://images.generated.photos/-t6chrwY4d4Ro2AXJ8fY0jv6NsX7rbGyejtYzHRF704/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NDM4Njk0LmpwZw.jpg", "biografia": "Licenciado em Letras pela Universidade de São Paulo e possui mestrado em Literatura Brasileira pela mesma instituição. Com 15 anos de experiência no ensino de Português, ele se especializa em gramática, redação e interpretação de textos. Além de lecionar, João é autor de diversos artigos acadêmicos e coautor de livros didáticos. Sua paixão pela língua portuguesa o impulsiona a buscar métodos inovadores de ensino. Atualmente, João é professor em uma das escolas mais renomadas de São Paulo.", "email": "ana.souza@gmail.com", "nome": "Ana Souza", "disciplina": {"nome": "Português"}, "whatsapp": "+5511971137628" },
